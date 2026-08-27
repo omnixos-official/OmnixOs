@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Omnix OS 27 is an Ubuntu-based all-in-one operating system, coming in 2027.">
+  <title>Omnix OS 27 — One OS. Every possibility.</title>
+  <style>
+    :root {
+      --ink: #edf4ff;
+      --muted: #a8b5cf;
+      --surface: rgba(18, 28, 53, .7);
+      --line: rgba(173, 195, 255, .18);
+      --blue: #63a8ff;
+      --violet: #a481ff;
+      --mint: #70efd0;
+      --bg: #07101f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55; overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: -20%; z-index: -2; pointer-events: none;
+      background: radial-gradient(circle at 25% 22%, rgba(78, 111, 255, .24), transparent 26%),
+                  radial-gradient(circle at 74% 35%, rgba(164, 84, 255, .18), transparent 25%),
+                  radial-gradient(circle at 56% 88%, rgba(33, 190, 172, .13), transparent 23%);
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .72; background-image: radial-gradient(#cfe4ff 1px, transparent 1.3px), radial-gradient(#a7b9ff 1px, transparent 1.2px); background-size: 92px 92px, 143px 143px; background-position: 16px 31px, 74px 88px; }
+    @keyframes drift { to { transform: translate3d(5%, 3%, 0) scale(1.07); } }
+    .grid { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .22; background-image: linear-gradient(rgba(150,180,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(150,180,255,.08) 1px, transparent 1px); background-size: 52px 52px; mask-image: linear-gradient(to bottom, black, transparent 80%); }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 25px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 800; letter-spacing: -.03em; text-decoration: none; font-size: 1.15rem; }
+    .mark { width: 31px; height: 31px; display: grid; place-items: center; border: 1px solid rgba(128, 183, 255, .6); border-radius: 10px; color: var(--blue); box-shadow: inset 0 0 18px rgba(90, 150, 255, .18); overflow: hidden; }
+    .mark img { width: 100%; height: 100%; }
+    .navlinks { display: flex; align-items: center; gap: 25px; }
+    .navlinks a { color: var(--muted); font-size: .92rem; text-decoration: none; }
+    .navlinks a:hover { color: var(--ink); }
+    .button { display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; padding: 12px 18px; border: 1px solid rgba(151, 187, 255, .45); color: #081327; background: linear-gradient(135deg, #80bdff, #ad91ff); font-weight: 750; text-decoration: none; box-shadow: 0 12px 35px rgba(98, 129, 255, .23); }
+    .button:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .hero { min-height: 655px; display: grid; grid-template-columns: 1.04fr .96fr; gap: 36px; align-items: center; padding: 78px 0 96px; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; padding: 6px 11px; border: 1px solid var(--line); border-radius: 999px; color: #bbd1ff; background: rgba(89, 120, 197, .12); font-size: .8rem; font-weight: 650; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 14px var(--mint); }
+    h1 { margin: 19px 0; max-width: 680px; font-size: clamp(3.25rem, 7vw, 6.35rem); letter-spacing: -.075em; line-height: .94; }
+    .gradient { background: linear-gradient(115deg, #fff 18%, #a8cdff 50%, #b995ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { max-width: 570px; margin: 0; color: var(--muted); font-size: 1.12rem; }
+    .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 29px; }
+    .button.secondary { color: #d6e4ff; background: rgba(20, 35, 66, .55); border-color: var(--line); box-shadow: none; }
+    .preview { position: relative; min-height: 370px; padding: 18px; border: 1px solid rgba(171, 198, 255, .25); border-radius: 20px; background: linear-gradient(135deg, rgba(37, 55, 100, .72), rgba(11, 19, 39, .76)); box-shadow: 0 32px 100px rgba(0, 0, 0, .38), 0 0 90px rgba(99, 112, 255, .18), inset 0 1px rgba(255,255,255,.1); transform: perspective(1000px) rotateY(-6deg) rotateX(2deg); }
+    .topbar { height: 27px; display: flex; align-items: center; justify-content: space-between; color: #c2d2f4; font-size: .66rem; }
+    .lights { display: flex; gap: 5px; }.lights i { width: 7px; height: 7px; border-radius: 50%; background: #ff7b86; }.lights i:nth-child(2){background:#ffd374}.lights i:nth-child(3){background:#72e5b6}
+    .desktop { min-height: 306px; display: grid; align-content: center; justify-items: center; border-radius: 11px; background: radial-gradient(circle at 48% 48%, rgba(127, 96, 255, .52), transparent 23%), radial-gradient(circle at 68% 27%, rgba(53, 159, 255, .34), transparent 22%), linear-gradient(145deg, #172853, #0b1731 65%, #16204f); overflow: hidden; }
+    .orb { width: 118px; height: 118px; border: 1px solid rgba(197, 210, 255, .54); border-radius: 40px; display: grid; place-items: center; background: rgba(15, 28, 67, .35); backdrop-filter: blur(10px); box-shadow: 0 0 55px rgba(130, 115, 255, .38); font-size: 3.2rem; font-weight: 200; }
+    .desktop p { margin: 13px 0 0; color: #dbe7ff; font-weight: 700; letter-spacing: -.03em; }
+    .dock { margin-top: 27px; display: flex; gap: 9px; padding: 8px; border: 1px solid rgba(255,255,255,.14); border-radius: 13px; background: rgba(7, 16, 39, .55); backdrop-filter: blur(8px); }
+    .app { width: 25px; height: 25px; border-radius: 7px; background: linear-gradient(145deg, #6bb7ff, #4c64e7); }.app:nth-child(2){background:linear-gradient(145deg,#f1a1f9,#9257dc)}.app:nth-child(3){background:linear-gradient(145deg,#90f1cb,#2aa58f)}.app:nth-child(4){background:linear-gradient(145deg,#f5c27a,#d57355)}
+    section { padding: 88px 0; }
+    .section-label { color: var(--blue); font-weight: 750; font-size: .76rem; text-transform: uppercase; letter-spacing: .14em; }
+    h2 { max-width: 660px; margin: 12px 0 15px; font-size: clamp(2rem, 4vw, 3.45rem); line-height: 1.03; letter-spacing: -.055em; }
+    .section-copy { max-width: 620px; color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 37px; }
+    .card { min-height: 190px; padding: 23px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .icon { display: grid; place-items: center; width: 37px; height: 37px; border: 1px solid rgba(151,187,255,.27); border-radius: 10px; background: rgba(95, 125, 233, .12); color: #9ec5ff; font-size: 1.18rem; }
+    .card h3 { margin: 17px 0 6px; font-size: 1.05rem; }.card p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .card:hover { border-color: rgba(162, 200, 255, .52); transform: translateY(-4px); transition: .2s ease; }
+    .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+    .pack { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(135deg, rgba(38, 56, 104, .62), rgba(11, 20, 47, .6)); color: #dce9ff; font-weight: 750; }
+    .pack span { color: var(--mint); margin-right: 8px; }
+    .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 33px; }
+    .ai-panel, .hub-panel, .orbit-panel { border: 1px solid var(--line); border-radius: 19px; background: linear-gradient(145deg, rgba(37, 55, 105, .7), rgba(8, 16, 42, .78)); box-shadow: 0 25px 70px rgba(0,0,0,.22); }
+    .ai-panel { min-height: 368px; padding: 22px; position: relative; }
+    .panelbar { display: flex; justify-content: space-between; color: #b7c8ec; font-size: .69rem; letter-spacing: .06em; }.ready { color: var(--mint); }
+    .chat { display: grid; gap: 11px; margin-top: 22px; }.bubble { max-width: 88%; padding: 12px; border-radius: 13px; border: 1px solid rgba(171, 202, 255, .13); background: rgba(19, 37, 83, .72); color: #dbe8ff; font-size: .86rem; }.bubble.user { justify-self: end; background: rgba(111, 85, 206, .38); }.bubble.ai::before { content: "O"; color: #a9d4ff; font-weight: 800; margin-right: 6px; }.prompt { position: absolute; bottom: 18px; left: 22px; right: 22px; padding: 11px; border: 1px solid var(--line); border-radius: 10px; color: #99accf; background: rgba(5, 14, 36, .66); font-size: .82rem; }
+    .hub-panel { grid-column: span 2; display: grid; grid-template-columns: 165px 1fr; min-height: 310px; overflow: hidden; }.hub-side { padding: 20px 11px; border-right: 1px solid var(--line); color: #a9b9da; font-size: .83rem; }.hub-side div { padding: 8px; border-radius: 8px; }.hub-side .selected { color: #eff5ff; background: rgba(109, 130, 239, .2); }.hub-content { padding: 24px; }.hub-content h3 { margin: 0; }.hub-content p { color: var(--muted); font-size: .9rem; }.hub-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; }.hub-card { padding: 14px; border: 1px solid rgba(179, 203, 255, .16); border-radius: 11px; background: rgba(24, 43, 89, .6); font-size: .88rem; }.hub-card span { display: block; margin-top: 4px; color: var(--mint); font-size: .78rem; }
+    .orbit-panel { position: relative; min-height: 370px; overflow: hidden; padding: 17px; }.orbit-stage { position: relative; min-height: 307px; border-radius: 12px; overflow: hidden; background: radial-gradient(circle at 48% 43%, rgba(131, 96, 255, .66), transparent 19%), radial-gradient(circle at 70% 22%, rgba(48, 166, 255, .45), transparent 18%), linear-gradient(145deg, #172b61, #07152e 70%, #192257); }.orbit-center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }.orbit-center .orb { margin: auto; }.orbit-center b { margin-top: 11px; }.orbit-dock { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 36px; border: 1px solid var(--line); border-radius: 17px; overflow: hidden; background: rgba(11, 21, 43, .5); }
+    .step { padding: 28px; border-right: 1px solid var(--line); }.step:last-child { border: 0; }.number { color: var(--violet); font-weight: 800; font-size: .8rem; }.step h3 { margin: 11px 0 8px; }.step p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .roadmap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 45px; align-items: center; }
+    .timeline { border-left: 1px solid rgba(158, 190, 255, .35); padding-left: 25px; }.milestone { position: relative; padding: 0 0 25px; }.milestone::before { content: ""; position: absolute; width: 9px; height: 9px; left: -30px; top: 6px; border: 2px solid #92beff; border-radius: 50%; background: var(--bg); }.milestone:first-child::before { background: var(--mint); border-color: var(--mint); box-shadow: 0 0 16px var(--mint); }.milestone:last-child { padding-bottom: 0; }.milestone strong { display: block; }.milestone span { color: var(--muted); font-size: .9rem; }
+    .cta { text-align: center; padding: 75px 20px; border: 1px solid rgba(164, 159, 255, .3); border-radius: 22px; background: radial-gradient(circle at 50% -20%, rgba(106, 116, 255, .28), transparent 55%), rgba(19, 25, 60, .46); }.cta h2 { margin: 0 auto 15px; }.cta p { margin: 0 auto 25px; max-width: 570px; color: var(--muted); }
+    footer { display: flex; justify-content: space-between; padding: 30px 0 38px; color: #8594b2; font-size: .83rem; } footer a { color: inherit; text-decoration: none; }
+    @media (max-width: 780px) { .navlinks a:not(.button) { display: none; }.hero,.roadmap,.showcase { grid-template-columns: 1fr; }.hero { padding-top: 48px; }.preview { max-width: 500px; width: 100%; margin: auto; transform: none; }.cards,.steps,.packs,.hub-cards { grid-template-columns: 1fr; }.hub-panel { grid-column: auto; grid-template-columns: 1fr; }.hub-side { display: none; }.step { border-right: 0; border-bottom: 1px solid var(--line); }.step:last-child { border-bottom: 0; } section { padding: 62px 0; } }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top"><span class="mark"><img src="omnix-logo.svg" alt="Omnix OS logo"></span> Omnix OS</a>
+      <div class="navlinks"><a href="ai-desktop.html">AI Desktop</a><a href="omnix-hub.html">Omnix Hub</a><a href="orbit-ui.html">Orbit UI</a><a href="specifications.html">Specs</a><a href="about.html">About</a><a href="community.html">Community</a><a class="button" href="download.html">Download</a></div>
+    </nav>
+    <main id="top">
+      <section class="hero">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> Planned for 2027</span>
+          <h1>One OS.<br><span class="gradient">Every possibility.</span></h1>
+          <p class="lead">Omnix OS 27 is a futuristic Ubuntu-based KDE Plasma desktop that brings work, creation, development, gaming, and learning together in one guided experience.</p>
+          <div class="actions"><a class="button" href="#vision">Discover Omnix</a><a class="button secondary" href="#roadmap">View roadmap</a></div>
+        </div>
+        <div class="preview" aria-label="Concept preview of the Omnix desktop">
+          <div class="topbar"><span class="lights"><i></i><i></i><i></i></span><span>Omnix Desktop</span><span>10:27</span></div>
+          <div class="desktop"><div class="orb">O</div><p>Welcome to Omnix</p><div class="dock"><span class="app"></span><span class="app"></span><span class="app"></span><span class="app"></span></div></div>
+        </div>
+      </section>
+      <section id="vision">
+        <span class="section-label">A complete workspace</span>
+        <h2>One calm starting point for everything you do.</h2>
+        <p class="section-copy">Start with a reliable Ubuntu LTS foundation and the flexibility of KDE Plasma. Then choose what matters to you. Omnix helps turn a clean desktop into your ideal setup—without the clutter.</p>
+        <div class="cards">
+          <article class="card"><div class="icon">⌘</div><h3>Work &amp; study</h3><p>Essential tools for writing, planning, meetings, and everyday life.</p></article>
+          <article class="card"><div class="icon">&lt;/&gt;</div><h3>Create &amp; build</h3><p>Ready-to-select packs for coding, design, video, music, and more.</p></article>
+          <article class="card"><div class="icon">◈</div><h3>Play &amp; explore</h3><p>Gaming support, learning tools, and a desktop that feels personal.</p></article>
+        </div>
+      </section>
+      <section>
+        <span class="section-label">Your system, your path</span>
+        <h2>Choose your world on first boot.</h2>
+        <p class="section-copy">The Omnix Welcome Center lets each person choose the software packs they need. Add or remove them later from Omnix Hub.</p>
+        <div class="packs"><div class="pack"><span>◈</span> Everyday</div><div class="pack"><span>✦</span> Study</div><div class="pack"><span>&lt;/&gt;</span> Developer</div><div class="pack"><span>◉</span> Creator</div><div class="pack"><span>⌁</span> Gaming</div><div class="pack"><span>⌾</span> Privacy</div></div>
+      </section>
+      <section id="ai">
+        <span class="section-label">Concept feature / AI desktop</span>
+        <h2>A desktop that understands your flow.</h2>
+        <p class="section-copy">Omnix AI Desktop is an optional future concept. It helps people find settings, organize a focused workspace, and understand their computer—always under the user's control.</p>
+        <div class="showcase"><div class="ai-panel"><div class="panelbar"><span>OMNIX ASSISTANT</span><span class="ready">● READY</span></div><div class="chat"><div class="bubble ai">Good evening. Would you like a focused study workspace?</div><div class="bubble user">Yes. Open my notes and silence distractions.</div><div class="bubble ai">Your Focus Space is ready. Notes and quiet mode are active.</div></div><div class="prompt">Ask Omnix anything about your computer…</div></div><div class="card"><div class="icon">✦</div><h3>Private by choice</h3><p>AI features should be optional, explain what they do, and keep privacy settings clear and simple.</p><h3>Focus spaces</h3><p>One tap can prepare a calm workspace for study, coding, creating, or gaming.</p></div></div>
+      </section>
+      <section id="hub">
+        <span class="section-label">Omnix Hub</span>
+        <h2>Everything Omnix. One place.</h2>
+        <p class="section-copy">The Hub is the control center for software packs, applications, updates, drivers, and Orbit UI customization.</p>
+        <div class="showcase"><div class="hub-panel"><aside class="hub-side"><div class="selected">Overview</div><div>Software packs</div><div>Applications</div><div>Updates</div><div>Drivers</div><div>Appearance</div></aside><div class="hub-content"><h3>Good evening, explorer.</h3><p>Your system is secure and up to date.</p><div class="hub-cards"><div class="hub-card">Developer Pack<span>Installed · Manage</span></div><div class="hub-card">Gaming Pack<span>Available · Explore</span></div><div class="hub-card">System updates<span>All caught up</span></div><div class="hub-card">Orbit UI<span>Dark mode active</span></div></div></div></div></div>
+      </section>
+      <section id="orbit">
+        <span class="section-label">The Omnix visual system</span>
+        <h2>Orbit UI: calm technology, clear focus.</h2>
+        <p class="section-copy">Deep-space color, soft light, rounded panels, and careful motion form a distinct desktop identity without losing clarity or comfort.</p>
+        <div class="showcase"><div class="orbit-panel"><div class="topbar"><span>O · Activities</span><span>Orbit UI</span><span>Wi‑Fi · 10:27</span></div><div class="orbit-stage"><div class="orbit-center"><div class="orb">O</div><b>Welcome to Omnix</b></div><div class="dock orbit-dock"><span class="app"></span><span class="app"></span><span class="app"></span><span class="app"></span></div></div></div><div class="card"><div class="icon">◌</div><h3>Deep space palette</h3><p>Navy surfaces and blue-violet light give Omnix a unique calm energy.</p><h3>Personal by design</h3><p>Users can customize colors, panels, docks, and window layouts through KDE Plasma and Omnix Hub.</p></div></div>
+      </section>
+      <section>
+        <span class="section-label">The Omnix way</span>
+        <h2>Make your system yours from the first welcome screen.</h2>
+        <div class="steps">
+          <article class="step"><span class="number">01 — INSTALL</span><h3>Begin simply</h3><p>Install a focused, fast, Ubuntu-based desktop.</p></article>
+          <article class="step"><span class="number">02 — CHOOSE</span><h3>Pick your paths</h3><p>Select the tools and experiences you want: creator, developer, gaming, and more.</p></article>
+          <article class="step"><span class="number">03 — EXPLORE</span><h3>Make it yours</h3><p>Use Omnix Hub to manage apps, drivers, updates, and your chosen packs.</p></article>
+        </div>
+      </section>
+      <section id="roadmap" class="roadmap">
+        <div><span class="section-label">Roadmap</span><h2>Built thoughtfully, before it ships.</h2><p class="section-copy">Omnix OS 27 begins with a simple goal: a polished, dependable all-in-one desktop made for real people.</p></div>
+        <div class="timeline"><div class="milestone"><strong>Planning &amp; identity</strong><span>2026 — defining the Omnix vision and experience.</span></div><div class="milestone"><strong>First development builds</strong><span>2027 — creating and testing the Ubuntu-based foundation.</span></div><div class="milestone"><strong>Omnix OS 27 release</strong><span>2027 — the first public edition.</span></div></div>
+      </section>
+      <section id="join"><div class="cta"><span class="section-label">The journey starts here</span><h2>Omnix OS 27 is coming in 2027.</h2><p>Follow the project as a new kind of all-in-one Ubuntu desktop takes shape.</p><a class="button" href="mailto:hello@omnixos.example?subject=Omnix%20OS%20updates">Contact the project</a></div></section>
+    </main>
+    <footer><span>© 2026 Omnix OS. A future Ubuntu-based project.</span><a href="#top">Back to top ↑</a></footer>
+  </div>
+</body>
+</html>
